@@ -4,7 +4,7 @@ import com.example.product_trial.product.models.Product;
 import com.example.product_trial.product.models.ProductEntity;
 import com.example.product_trial.product.repositories.ProductRepository;
 import com.example.product_trial.product.services.interfaces.ProductService;
-import com.example.product_trial.product.utils.constants.ConstantMessages;
+import com.example.product_trial.shared.constants.ConstantMessages;
 import com.example.product_trial.product.utils.exceptions.ProductDoesntExistException;
 import com.example.product_trial.product.utils.mappers.ProductMapper;
 import org.springframework.stereotype.Service;
@@ -69,7 +69,6 @@ public class ProductServiceImpl implements ProductService {
             // False: Raise ProductDoesntExist Exception
             throw new ProductDoesntExistException(ConstantMessages.PRODUCT_NOT_FOUND);
         }
-
     }
 
     @Override

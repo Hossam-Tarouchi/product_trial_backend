@@ -1,9 +1,9 @@
 package com.example.product_trial.product.controllers;
 
-import com.example.product_trial.product.models.CustomHttpResponse;
+import com.example.product_trial.shared.models.CustomHttpResponse;
 import com.example.product_trial.product.models.Product;
 import com.example.product_trial.product.services.interfaces.ProductService;
-import com.example.product_trial.product.utils.constants.ConstantMessages;
+import com.example.product_trial.shared.constants.ConstantMessages;
 import com.example.product_trial.product.utils.exceptions.ProductDoesntExistException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

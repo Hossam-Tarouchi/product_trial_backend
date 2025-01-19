@@ -1,4 +1,4 @@
-package com.example.product_trial.product.models;
+package com.example.product_trial.shared.models;
 
 import lombok.Builder;
 import lombok.Data;
