@@ -46,10 +46,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public Product removeFromShoppingCart(Product product) {
+    public void removeFromShoppingCart(Long product_id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserEntity currentUser = (UserEntity) authentication.getPrincipal();
-        shoppingCartRepository.deleteByUserIdAndProductId(currentUser.getId(), product.getId());
-        return product;
+        shoppingCartRepository.deleteByUserIdAndProductId(currentUser.getId(), product_id);
     }
 }
