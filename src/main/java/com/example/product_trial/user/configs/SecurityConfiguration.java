@@ -35,14 +35,18 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf()
-                .disable()
+        // Apply CORS before anything else
+        http.cors().and()
+                .csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/account", "/token")
                 .permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/v1/product").access(this::isAdmin)
-                .requestMatchers(HttpMethod.PATCH, "/api/v1/product/**").access(this::isAdmin)
-                .requestMatchers(HttpMethod.DELETE, "/api/v1/product/**").access(this::isAdmin)
+                .requestMatchers(HttpMethod.POST, "/api/v1/product")
+                .access(this::isAdmin)
+                .requestMatchers(HttpMethod.PATCH, "/api/v1/product/**")
+                .access(this::isAdmin)
+                .requestMatchers(HttpMethod.DELETE, "/api/v1/product/**")
+                .access(this::isAdmin)
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -58,13 +62,12 @@ public class SecurityConfiguration {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-
         configuration.setAllowedOrigins(List.of("http://localhost:4200"));
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+        configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-
         source.registerCorsConfiguration("/**", configuration);
 
         return source;

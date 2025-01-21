@@ -8,6 +8,6 @@ public interface ShoppingCartService {
 
     List<Product> getUserShoppingCart();
     Product addToShoppingCart(Product product);
-    Product removeFromShoppingCart(Product product);
+    void removeFromShoppingCart(Long product_id);
 
 }
