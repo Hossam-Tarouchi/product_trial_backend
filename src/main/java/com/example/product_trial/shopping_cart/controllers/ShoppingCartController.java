@@ -42,9 +42,9 @@ public class ShoppingCartController {
             );
     }
 
-    @DeleteMapping
-    public ResponseEntity<CustomHttpResponse> deleteFromWishList(@RequestBody Product product) {
-        shoppingCartService.removeFromShoppingCart(product);
+    @DeleteMapping("/{product_id}")
+    public ResponseEntity<CustomHttpResponse> deleteFromWishList(@PathVariable Long product_id) {
+        shoppingCartService.removeFromShoppingCart(product_id);
         return ResponseEntity.status(HttpStatus.OK)
             .body(CustomHttpResponse.builder()
                     .success(true)
